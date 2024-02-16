@@ -1,0 +1,2 @@
+localhost ansible_user=vishwa
+ansible_ssh_pass=vishwa
