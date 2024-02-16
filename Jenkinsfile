@@ -31,9 +31,10 @@ pipeline{
         stage('Deploy with Ansible'){
             steps{
                 script{
-                    ansiblePlaybook{
-                    playbook:'deploy.yml'
-                    inventory:'inventory'
+                        ansiblePlaybook becomeUser: null, colorized: true,
+                        disableHostKeyChecking: true, installation: 'Ansible',
+                        inventory: 'deploy-docker/inventory',
+                         playbook: 'deploy-docker/deploy.yml', sudoUser: null, vaultTmpPath: ''
                     }
                 }
             }
