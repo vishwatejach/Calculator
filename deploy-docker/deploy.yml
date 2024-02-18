@@ -1,20 +1,8 @@
 ---
-- name: Pull Docker Image from Docker Hub
-  hosts: all
+- hosts: localhost
   tasks:
-    - name: Pull Docker Image
-      docker_image:
-        name: "vishwatejach/calculator"
-        source: pull
-      register: docker_pull_result
+    - name: Pull Docker image from Docker Hub
+      shell: docker pull vishwatejach/calculator
 
-    - name: Display Docker Pull Result
-      debug:
-        var: docker_pull_result
-
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
-    - name: Running container
-      shell: docker run -it -d --name calculator vishwatejach/calculator
+    - name: Run Docker container
+      shell: docker run -d -p 8081:8080 vishwatejach/calculator
